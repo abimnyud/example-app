@@ -1,40 +1,42 @@
 import fs from 'fs'
 import Joi from 'joi'
+import * as ApiError from '../lib/ApiError.js'
 
 const loginSchema = Joi.object({
     username: Joi.string().required(),
     password: Joi.string().required()
 })
 
-export const getAllUser = async(req, res) => {
+export const getAllUser = async(req, res, next) => {
+    // res.send('Hello World!')
     try {
         const { users } = JSON.parse(fs.readFileSync('./data/db.json'))
-        return res.json(users)
+        if (users.length === 0) {
+            return next(ApiError.notFound('No user found'))
+        }
+
+        res.json(users)
     } catch(error) {
-        return res.json({
-            error: error.message
-        })
+        next(ApiError.serverError(error.message))
+        // res.status(500).json(error.message)
     }
 }
 
-export const userLogin = async(req, res) => {
+export const userLogin = async(req, res, next) => {
     try {
         const { users } = JSON.parse(fs.readFileSync('./data/db.json'))
-        const { username, password } = await loginSchema.validateAsync(req.body) 
+        const { username, password } = await loginSchema.validateAsync(req.body)
         const user = users.find(user => user.username === username && user.password === password)
-        if(!user) {
-            return res.json({
-                message: 'Invalid username or password'
-            })
-        } 
+        if (!user) {
+            return next(ApiError.notFound(`Invalid username or password`))
+        }
 
-        return res.json({
-            message: 'Login Success',
-            user: user
+        res.status(200).json({
+            message: "Login Success",
+            user:user
         })
+
     } catch(error) {
-        return res.json({
-            error: error.message
-        })
+        next(ApiError.serverError(error.message))
     }
 }
