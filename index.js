@@ -1,6 +1,6 @@
 import express from "express";
 import log from './middleware/logging.js'
-import user from './router/user_router.js'
+import user from './routes/user_router.js'
 import ApiErrorHandler from "./middleware/ApiErrorHandler.js";
 
 const app = express();
