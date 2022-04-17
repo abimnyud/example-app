@@ -1,6 +1,7 @@
 import fs from 'fs'
 import Joi from 'joi'
 import * as ApiError from '../lib/ApiError.js'
+import jwt from 'jsonwebtoken'
 
 const loginSchema = Joi.object({
     username: Joi.string().required(),
@@ -31,11 +32,12 @@ export const userLogin = async(req, res, next) => {
             return next(ApiError.notFound(`Invalid username or password`))
         }
 
-        res.status(200).json({
+        const token = jwt.sign({ id: user.id }, process.env.USER_SECRET)
+        res.cookie('token', token).status(200).json({
             message: "Login Success",
-            user:user
+            username,
+            token
         })
-
     } catch(error) {
         next(ApiError.serverError(error.message))
     }
@@ -70,6 +72,7 @@ export const userUpdate = async(req, res, next) => {
         if (!user) {
             return next(ApiError.notFound(`User not found`))
         }
+
         const updatedUser = users.filter(user => {
             if (user.id === id) {
                 user.username = username ? username : user.username
