@@ -7,9 +7,9 @@ const config = {
   host: process.env.PG_HOST,
   port: process.env.PG_PORT,
   database: process.env.PG_DATABASE,
-  // ssl: {
-  //   rejectUnauthorized: false,
-  // }
+  ssl: {
+    rejectUnauthorized: false,
+  }
 };
 
 const db = new Pool(config);
