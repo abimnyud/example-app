@@ -1,26 +1,13 @@
-import express from "express";
-import log from './middleware/logging.js'
-import user from './routes/user_router.js'
-import ApiErrorHandler from "./middleware/ApiErrorHandler.js";
-import dotenv from 'dotenv'
-import cookieParser from "cookie-parser";
+require('dotenv').config()
 
-const app = express();
-dotenv.config()
-const port = process.env.PORT || 3000;
+const app = require('./src/app');
+const db = require('./connection/dbConnect');
 
-// Body Parser
-app.use(express.json());
-
-// Cookie Parser
-app.use(cookieParser());
-
-// app.use(log)
-app.use('/user', user)
-app.get('/', (req, res) => {
-    res.send('Hello World!')
+app.listen(Number(process.env.APP_PORT), async () => {
+  try {
+    await db.connect();
+    console.log(`DB connected. listening on port ${process.env.APP_PORT}`);
+  } catch (e) {
+    console.log(e);
+  }
 })
-
-// Error Handling
-app.use(ApiErrorHandler)
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
