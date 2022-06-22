@@ -49,22 +49,23 @@ Halo teman-teman Android! Ini merupakan final test untuk Back-end Study Club KSM
       <summary>Klik buat liat datanya</summary>
 
       ```
+	  
       {
       	"judul_film": "Gundala",
       	"rating": 5,
       	"pemain": [
       		{
-      			"id": 1
+      			"id": 1,
                 "nama": "Abimana Aryasatya",
       			"rating": 5
       		},
       		{
-      			"id": 2
+      			"id": 2,
                 "nama": "Pevita Pearce",
       			"rating": 5
       		},
       		{
-      			"id": 3
+      			"id": 3,
                 "nama": "Tara Basro",
       			"rating": 5
       		}
@@ -72,18 +73,20 @@ Halo teman-teman Android! Ini merupakan final test untuk Back-end Study Club KSM
       }
 
       ```
+
     </details>
   - Ketika Get Cast by id 1, maka juga akan mengembalikan data film yang dimainkan
     <details>
       <summary>Klik buat liat datanya</summary>
 
       ```
+
       {
       	"nama": "Abimana Aryasatya",
       	"rating": 5,
       	"pemain": [
       		{
-      			"id": 1
+      			"id": 1,
                 "judul_film": "Gundala",
       			"rating": 5
       		}
@@ -91,6 +94,7 @@ Halo teman-teman Android! Ini merupakan final test untuk Back-end Study Club KSM
       }
       
       ```
+
     </details>
 
 ## Cara Ngumpulin
