@@ -4,16 +4,16 @@ const bodyParser = require('body-parser');
 const db = require('../../../connection/dbConnect');
 app.use(bodyParser.json());
 
-
-const postGameHandler = async (req, res) => {
+const updateGameHandler = async (req, res) => {
     const namaGame = req.body.nama_game;
     const tanggalGame = req.body.tanggal_rilis;
     const hargaGame = req.body.harga;
-    const query = `insert into game("nama_game", "tanggal_rilis", "harga") 
-                       values('${namaGame}', '${tanggalGame}', '${hargaGame}')`
+    const { id }= req.params;
+    const query =
+    `UPDATE GAME SET "nama_game" = '${namaGame}', "tanggal_rilis" = '${tanggalGame}', "harga" = ${hargaGame} WHERE "id_game"=${id}`;
     try {
         await db.query(query);
-        res.send('Insertion was successful');
+        res.send('Data update was successful');
     } catch (err) {
         res.status(500).json({
             message: err.message,
@@ -21,4 +21,4 @@ const postGameHandler = async (req, res) => {
     }
 }
 
-module.exports = postGameHandler;
+module.exports = updateGameHandler;
