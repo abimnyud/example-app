@@ -1,3 +1,11 @@
+create table games (
+    id_game serial PRIMARY KEY , 
+    nama_game varchar NOT NULL, 
+    tanggal_rilis date NOT NULL, 
+    harga int
+);
+
+
 CREATE TABLE public.articles (
     id          serial4         NOT NULL,
 	title       varchar(255)    NOT NULL,

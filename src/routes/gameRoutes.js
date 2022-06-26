@@ -1,0 +1,11 @@
+const getGameHandler = require('../handler/game/getGameHandler');
+const getGameListHandler = require('../handler/game/getGameListHandler');
+const postGameHandler = require('../handler/game/postGameHandler');
+const express = require('express');
+
+const router = express.Router();
+router.get('/', getGameListHandler);
+router.get('/find/:id', getGameHandler);
+router.post('/addGame', postGameHandler);
+
+module.exports = router;
