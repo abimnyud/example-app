@@ -1,9 +1,9 @@
-const getArticleHandler = require('../handler/article/getArticleHandler');
-const getArticleListHandler = require('../handler/article/getArticleListHandler');
+const getGameHandler = require('../handler/article/getGameHandler');
+const getGameListHandler = require('../handler/article/getGameListHandler');
 const express = require('express');
 
 const router = express.Router();
-router.get('/', getArticleListHandler);
-router.get('/find/:id', getArticleHandler);
+router.get('/', getGameListHandler);
+router.get('/find/:id', getGameHandler);
 
 module.exports = router;

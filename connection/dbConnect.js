@@ -1,5 +1,5 @@
 require('dotenv').config();
-const Pool = require('pg-pool');
+const Pool = require('pg').Pool;
 
 const config = {
   user: process.env.PG_USER,

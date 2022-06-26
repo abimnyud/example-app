@@ -1,11 +1,12 @@
 const db = require('../../../connection/dbConnect');
 
-const getArticleListHandler = async (req, res) => {
-    const query = `SELECT * FROM articles`;
+const getGameHandler = async (req, res) => {
+    const { id } = req.params;
+    const query = `SELECT * FROM game WHERE id_game = ${id}`;
 
     try {
         const { rows } = await db.query(query);
-        res.status(200).json(rows);
+        res.status(200).json(rows[0]);
     } catch (err) {
         res.status(500).json({
             message: err.message,
@@ -13,4 +14,4 @@ const getArticleListHandler = async (req, res) => {
     }
 }
 
-module.exports = getArticleListHandler;
+module.exports = getGameHandler;
