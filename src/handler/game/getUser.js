@@ -1,7 +1,7 @@
 const db = require('../../../connection/dbConnect');
 
-const getGameListHandler = async (req, res) => {
-    const query = `SELECT * FROM game order by id_game`;
+const getUserHandler = async (req, res) => {
+    const query = `SELECT * FROM "user" order by id_user`;
 
     try {
         const { rows } = await db.query(query);
@@ -13,4 +13,4 @@ const getGameListHandler = async (req, res) => {
     }
 }
 
-module.exports = getGameListHandler;
+module.exports = getUserHandler;
