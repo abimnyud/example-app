@@ -7,7 +7,7 @@ const postGameHandler = async (req, res) => {
     let insertQuery = `insert into game("nama_game", "tanggal_rilis", "harga") 
                        values(${game.nama_game}, '${game.tanggal_rilis}', '${game.harga}')`
 
-    client.query(insertQuery, (err, result)=>{
+    client.query(insertQuery, (err, res)=>{
         if(!err){
             res.send('Insertion was successful')
         }
