@@ -63,20 +63,34 @@ const createUser = async (req, res) => {
 
     // Check If Email Exist
     const checkEmail = `SELECT * FROM "user" WHERE email = '${email}'`;
-    await db.query(checkEmail);
-    if(!error) return res.status(400).send('Email already exist'); 
+    const data = await db.query(checkEmail);
+    if(data.rows.length>0) return res.status(400).send('Email already exist'); 
 
-    // Password hashing
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
-    // Create new user
-    const username = req.body.username;
-    const password = hashedPassword;
-    const query = `insert into "user"("username", "email", "password") 
-                       values('${username}', '${email}', '${password}')`
     try {
+    const saltRounds=10;
+    bcrypt.hash(req.body.password, saltRounds, async function(err, hashedPassword) {
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: err.message,
+            });
+        }
+        // insert to db
+        const username = req.body.username;
+        const query = `insert into "user"("username", "email", "password") 
+                        values('${username}', '${email}', '${hashedPassword}')`
+    
         await db.query(query);
+    });
+    // Password hashing
+    // const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
+    // const salt = bcrypt.genSaltSync(10);
+    // const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    // console.log(req.body.password);
+    // Create new user
         res.send('Registration was successful');
     } catch (err) {
         res.status(500).json({

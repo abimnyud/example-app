@@ -4,10 +4,11 @@ const bodyParser = require('body-parser');
 const db = require('../../../connection/dbConnect');
 const bcrypt = require('bcryptjs');
 app.use(bodyParser.json());
+const jwt = require('jsonwebtoken');
 
 // validation
 const Joi = require('@hapi/joi');
-const { valid } = require('joi');
+// const { valid } = require('joi');
 const schema = Joi.object({
     email: Joi.string().min(6).required().email(),
     password: Joi.string().min(6).required()
@@ -18,28 +19,33 @@ const login = async (req, res) => {
     const { error } = schema.validate(req.body);
     if(error)  return res.status(400).send(error.details[0].message);
 
-    // Password Hashing
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    // Check If Email Exist
+    const checkEmail = `SELECT * FROM "user" WHERE email = '${req.body.email}'`;
+    const data = await db.query(checkEmail);
+    if(data.rows.length==0) return res.status(400).send('Email not found');
 
-    // Correct Password
-    const validPass = await bcrypt.compare(hashedPassword, user.password);
-    if(!validPass) return res.status(400).send("Invalid Password");
+    // Log In
+    const { password } = req.body
+    bcrypt.compare(password, data.rows[0].password, function(err, result) {
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: err.message,
+            });
+        }
+        
+        if (!result) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid password'
+            });
+        }
+    })
 
-    // Create new user
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = hashedPassword;
-    const query = `insert into "user"("username", "email", "password") 
-                       values('${username}', '${email}', '${password}')`
-    try {
-        await db.query(query);
-        res.send('Registration was successful');
-    } catch (err) {
-        res.status(500).json({
-            message: err.message,
-        });
-    }
+    // Create, assign token
+    const token = jwt.sign({ email: data.rows[0].email }, process.env.TOKEN_SECRET);
+    res.header('token', token).send('Logged in!');
+
 }
 
 module.exports = login;
