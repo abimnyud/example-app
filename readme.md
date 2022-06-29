@@ -3,7 +3,7 @@ Halo teman-teman Android! Ini merupakan final test untuk Back-end Study Club KSM
 
 </br>
 
-> ## <span style="color:red"> ⚠️ Deadline: Jum'at, 2 Juli 2022 </span>
+> ## <span style="color:red"> ⚠️ Deadline: Jum'at, 1 Juli 2022 </span>
 ## Tahapan
 1. Baca detail tugas di bawah
 2. Clone repository ini ([git cmd](#git-commands) poin ke 1)
