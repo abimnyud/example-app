@@ -82,14 +82,7 @@ const createUser = async (req, res) => {
     
         await db.query(query);
     });
-    // Password hashing
-    // const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
-    // const salt = bcrypt.genSaltSync(10);
-    // const hashedPassword = bcrypt.hashSync(req.body.password, salt);
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-    // console.log(req.body.password);
     // Create new user
         res.send('Registration was successful');
     } catch (err) {
