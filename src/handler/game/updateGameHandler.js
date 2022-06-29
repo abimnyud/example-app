@@ -13,7 +13,7 @@ const updateGameHandler = async (req, res) => {
     `UPDATE GAME SET "nama_game" = '${namaGame}', "tanggal_rilis" = '${tanggalGame}', "harga" = ${hargaGame} WHERE "id_game"=${id}`;
     try {
         await db.query(query);
-        res.send('Data update was successful');
+        res.status(200).send('Data update was successful');
     } catch (err) {
         res.status(500).json({
             message: err.message,

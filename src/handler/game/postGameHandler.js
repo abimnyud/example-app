@@ -13,7 +13,7 @@ const postGameHandler = async (req, res) => {
                        values('${namaGame}', '${tanggalGame}', '${hargaGame}')`
     try {
         await db.query(query);
-        res.send('Insertion was successful');
+        res.status(201).send('Insertion was successful');
     } catch (err) {
         res.status(500).json({
             message: err.message,

@@ -44,7 +44,7 @@ const login = async (req, res) => {
 
     // Create, assign token
     const token = jwt.sign({ email: data.rows[0].email }, process.env.TOKEN_SECRET);
-    res.header('token', token).send('Logged in!');
+    res.header('token', token).status(202).send('Logged in!');
 
 }
 
