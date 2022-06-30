@@ -9,8 +9,9 @@ const postGameHandler = async (req, res) => {
     const namaGame = req.body.nama_game;
     const tanggalGame = req.body.tanggal_rilis;
     const hargaGame = req.body.harga;
-    const query = `insert into game("nama_game", "tanggal_rilis", "harga") 
-                       values('${namaGame}', '${tanggalGame}', '${hargaGame}')`
+    const publisher = req.body.id_publisher;
+    const query = `insert into game("nama_game", "tanggal_rilis", "harga", "id_publisher") 
+                       values('${namaGame}', '${tanggalGame}', '${hargaGame}', '${publisher}')`
     try {
         await db.query(query);
         res.status(201).send('Insertion was successful');
