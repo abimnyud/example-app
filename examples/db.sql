@@ -1,3 +1,5 @@
+`SELECT * FROM publishers p JOIN game g ON p.id_publisher = g.id_publisher where p.publisher = ${id}`
+
 create table games (
     id_game serial PRIMARY KEY , 
     nama_game varchar NOT NULL, 

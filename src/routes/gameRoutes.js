@@ -1,6 +1,6 @@
 // Game
 const getGame = require('../handler/game/getGame');
-const getGameList = require('../handler/game/getGameList');
+const getAllGame = require('../handler/game/getAllGame');
 const postGame = require('../handler/game/postGame');
 const updateGame = require('../handler/game/updateGame');
 const deleteGame = require('../handler/game/deleteGame');
@@ -11,6 +11,7 @@ const getUser = require('../handler/game/getUser');
 const login = require('../handler/game/login');
 
 // Publisher
+const getAllPublisher = require('../handler/game/getAllPublisher');
 const getPublisher = require('../handler/game/getPublisher');
 const postPublisher = require('../handler/game/postPublisher');
 const updatePublisher = require('../handler/game/updatePublisher');
@@ -18,18 +19,16 @@ const deletePublisher = require('../handler/game/deletePublisher');
 const express = require('express');
 const verify = require ('../middleware/verifyToken');
 
-
-
-
 const router = express.Router();
-router.get('/', verify, getGameList);
+router.get('/', verify, getAllGame);
 router.get('/find/:id', verify, getGame);
 router.post('/addGame', verify, postGame);
 router.put('/updateGame/:id', verify, updateGame);
 router.delete('/deleteGame/:id', verify, deleteGame);
 router.post('/addUser', createUser);
 router.get('/getUser', verify, getUser);
-router.get('/publisher', verify, getPublisher);
+router.get('/publisher', verify, getAllPublisher);
+router.get('/publisher/:id', verify, getPublisher);
 router.post('/addPublisher', verify, postPublisher);
 router.put('/updatePublisher/:id', verify, updatePublisher);
 router.delete('/deletePublisher/:id', verify, deletePublisher);

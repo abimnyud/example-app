@@ -12,6 +12,12 @@ const postGameHandler = async (req, res) => {
     const publisher = req.body.id_publisher;
     const query = `insert into game("nama_game", "tanggal_rilis", "harga", "id_publisher") 
                        values('${namaGame}', '${tanggalGame}', '${hargaGame}', '${publisher}')`
+
+    // Check If Data Exist
+    const checkData = `SELECT * FROM game WHERE nama_game = '${namaGame}'`;
+    const data = await db.query(checkData);
+    if(data.rows.length>0) return res.status(400).send('Game already exist'); 
+
     try {
         await db.query(query);
         res.status(201).send('Insertion was successful');
