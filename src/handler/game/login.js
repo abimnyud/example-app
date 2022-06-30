@@ -33,19 +33,17 @@ const login = async (req, res) => {
                 message: err.message,
             });
         }
-        
         if (!result) {
             return res.status(400).json({
                 success: false,
                 message: 'Invalid password'
             });
         }
+        
+        // Create, assign token
+        const token = jwt.sign({ email: data.rows[0].email }, process.env.TOKEN_SECRET);
+        res.header('token', token).status(202).send('Logged in!');
     })
-
-    // Create, assign token
-    const token = jwt.sign({ email: data.rows[0].email }, process.env.TOKEN_SECRET);
-    res.header('token', token).status(202).send('Logged in!');
-
 }
 
 module.exports = login;
