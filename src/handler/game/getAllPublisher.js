@@ -1,7 +1,7 @@
 const db = require('../../../connection/dbConnect');
 
-const getArticleListHandler = async (req, res) => {
-    const query = `SELECT * FROM articles`;
+const getAllPublisher = async (req, res) => {
+    const query = `SELECT * FROM publishers order by id_publisher`;
 
     try {
         const { rows } = await db.query(query);
@@ -13,4 +13,4 @@ const getArticleListHandler = async (req, res) => {
     }
 }
 
-module.exports = getArticleListHandler;
+module.exports = getAllPublisher;

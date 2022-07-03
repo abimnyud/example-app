@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const articleRoutes = require('./articleRoutes');
+const gameRoutes = require('./gameRoutes');
 
-router.use('/articles', articleRoutes);
+router.use('/game', gameRoutes);
 
 router.all('*', (req, res) => {
-    res.end('<h1>Not Found. Please refer to our documentation.</h1>');
+    res.status(404).send('Not Found. Please refer to our documentation.');
   })
 
 module.exports = router;
