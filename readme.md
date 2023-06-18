@@ -21,7 +21,7 @@ Halo teman-teman Android! Ini merupakan final test untuk Back-end Study Club KSM
 ## Catatan Tambahan
 - Diperbolehkan menambahkan fitur fitur tambahan lain di luar detail tugas
 - Diperbolehkan menggunakan database SQL mauapun NoSQL
-- Diperbolehkan menggunakan ORM atau framework lain selain contoh di repository ini (repository ini menggunakan express dan native mysql tanpa ORM)
+- Diperbolehkan menggunakan ORM atau framework lain selain contoh di repository ini (repository ini menggunakan express dan native postgresql tanpa ORM)
 
 > ## Contoh 📝
 > Misalnya mau membuat API CRUD sederhana terdiri dari 2 entity **Film** dan **Pemain** yang memiliki relasi m:n (many to many), maka tabel yang diperlukan adalah:
