@@ -13,9 +13,9 @@ Halo teman-teman Android! Ini merupakan final test untuk Back-end Study Club KSM
 6. Ubah file .env sesuaikan dengan database local kalian
 7. Semoga bermanfaat ya buat jadi portfolio! Selamat ngoding! ✨
 ## Detail Tugas
-- Minimal memiliki entity admin dan 2 entity lain yang memiliki relasi 1:n (One to Many) atau m:n (Many to One) antara 2 entity tersebut 
+- Minimal memiliki entity admin dan 2 entity lain yang memiliki relasi 1:n (One to Many) atau m:n (Many to Many) antara 2 entity tersebut 
 - Web Service API (CRUD) untuk admin dan 2 entity yang dipilih (Hanya admin yang dapat melakukan proses CUD)
-- Membuat signup dan login authentication (signup optional, yang wajib hanya login). Apabila login berhasil, maka kembalikan token JWT yang bisa di autentikasi untuk melakukan proses CUR (Create, Update, dan Delete) 2 entity yang dipilih, serta Update dan Delete entity admin
+- Membuat signup dan login authentication (signup optional, yang wajib hanya login). Apabila login berhasil, maka kembalikan token JWT yang bisa di autentikasi untuk melakukan proses CUD (Create, Update, dan Delete) 2 entity yang dipilih, serta Update dan Delete entity admin
 - Membuat authorization middleware untuk cek apakah admin yang yang hit API atau bukan (menggunakan JWT)? Kalau bukan, maka kembalikan error Unauthorized(401).
 
 ## Catatan Tambahan
