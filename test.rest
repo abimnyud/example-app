@@ -1,0 +1,83 @@
+POST http://127.0.0.1:3000/api/event
+Content-Type: application/json
+
+{
+    "name": "test",
+    "description": "test",
+    "date": "2020-01-01",
+    "time": "32000000",
+    "location": "test",
+    "price": 10000,
+    "quota": 10
+}
+
+
+###
+PUT http://127.0.0.1:3000/api/event/1
+Content-Type: application/json
+
+{
+    "name": "test",
+    "description": "test",
+    "date": "2020-01-01",
+    "time": "32000000",
+    "location": "test",
+    "price": 10000,
+    "quota": 10
+}
+
+
+###
+POST http://127.0.0.1:3000/api/sign-up
+Content-Type: application/json
+
+{
+    "name": "test",
+    "email": "test@gmail.com",
+    "password": "test"
+}
+
+###
+GET http://127.0.0.1:3000/api/event
+
+###
+GET http://127.0.0.1:3000/api/mark/3
+
+###
+GET http://127.0.0.1:3000/api/mark/
+
+###
+DELETE http://127.0.0.1:3000/api/event/3
+
+###
+POST http://127.0.0.1:3000/api/sign-in
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "test"
+}
+
+###
+POST http://127.0.0.1:3000/api/sign-in
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "admin"
+}
+
+###
+DELETE http://127.0.0.1:3000/api/mark/2
+
+###
+GET http://127.0.0.1:3000/api/sign-out
+
+###
+POST http://127.0.0.1:3000/api/test
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "admin"
+}
