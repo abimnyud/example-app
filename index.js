@@ -1,13 +1,13 @@
-require('dotenv').config()
+import dotenv from 'dotenv';
 
-const app = require('./src/app');
-const db = require('./connection/dbConnect');
+dotenv.config();
 
-app.listen(Number(process.env.PORT || 5000), async () => {
+import app from './src/app.js';
+
+app.listen( Number( process.env.PORT || 5000 ), async () => {
   try {
-    await db.connect();
-    console.log(`DB connected. listening on port ${process.env.PORT}`);
-  } catch (e) {
-    console.log(e);
+    console.log( `DB connected. listening on port ${process.env.PORT}` );
+  } catch ( e ) {
+    console.log( e );
   }
-})
+} );
